@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/auth');
 const bookRoutes = require('./routes/books');
 const contactRoutes = require('./routes/contact');
+const essayRoutes = require('./routes/essay');
 
 if (!process.env.JWT_SECRET) {
   console.error('Defina JWT_SECRET no arquivo .env antes de iniciar.');
@@ -35,6 +36,7 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 app.use('/api/auth', authRoutes);
 app.use('/api', bookRoutes);
 app.use('/api', contactRoutes);
+app.use('/api', essayRoutes);
 
 app.use((req, res) => res.status(404).json({ error: 'Rota não encontrada.' }));
 
